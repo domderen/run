@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_COMPOSE_FILENAME=docker-compose.dev.yml
+DOCKER_COMPOSE_FILENAME=./out/docker-compose.dev.yml
 
 set -e
 

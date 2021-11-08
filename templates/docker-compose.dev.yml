@@ -1,0 +1,41 @@
+version: "3.7"
+  services:
+    backend:
+      logging:
+        driver: awslogs
+        options:
+          awslogs-region: us-east-1
+          awslogs-group: {{ (datasource "data").name }}/backend
+      container_name: backend
+      image: {{ (datasource "data").deso_backend_docker_image }}
+      command: run
+      volumes:
+      - db:/db
+      ports:
+      - {{ (datasource "data").deso_backend_port }}:{{ (datasource "data").deso_backend_port }}
+      - 17000:17000
+      env_file:
+      - dev.env
+      expose:
+      - "{{ (datasource "data").deso_backend_port }}"
+      - "17000"
+    frontend:
+      logging:
+        driver: awslogs
+        options:
+          awslogs-region: us-east-1
+          awslogs-group: {{ (datasource "data").name }}/frontend
+      container_name: frontend 
+      image: {{ (datasource "data").deso_frontend_docker_image }}
+      ports:
+      - {{ (datasource "data").deso_frontend_port }}:{{ (datasource "data").deso_frontend_port }}
+      - {{ (datasource "data").deso_frontend_healthcheck_port }}:{{ (datasource "data").deso_frontend_healthcheck_port }}
+      volumes:
+      - ./:/app
+      env_file:
+      - dev.env
+      expose:
+      - "{{ (datasource "data").deso_frontend_port }}"
+      - "{{ (datasource "data").deso_frontend_healthcheck_port }}"
+  volumes:
+    db:

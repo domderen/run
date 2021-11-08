@@ -1,0 +1,6 @@
+inputDir: templates
+outputDir: out
+
+context:
+  data:
+    url: data.json
