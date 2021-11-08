@@ -12,13 +12,13 @@ version: "3.7"
       volumes:
       - db:/db
       ports:
-      - {{ (datasource "data").deso_backend_port }}:{{ (datasource "data").deso_backend_port }}
-      - 17000:17000
+      - {{ (datasource "data").API_PORT }}:{{ (datasource "data").API_PORT }}
+      - {{ (datasource "data").PROTOCOL_PORT }}:{{ (datasource "data").PROTOCOL_PORT }}
       env_file:
       - dev.env
       expose:
-      - "{{ (datasource "data").deso_backend_port }}"
-      - "17000"
+      - "{{ (datasource "data").API_PORT }}"
+      - "{{ (datasource "data").PROTOCOL_PORT }}"
     frontend:
       logging:
         driver: awslogs
