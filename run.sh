@@ -14,6 +14,6 @@ if ! [ -x "$(command -v docker-compose)" ]; then
 fi
 
 docker-compose -f ${DOCKER_COMPOSE_FILENAME} pull || ( echo -e "\n\n\nTry running ./run.sh with sudo" && exit 1 )
-docker-compose -f ${DOCKER_COMPOSE_FILENAME} up "$@"
+docker-compose -f ${DOCKER_COMPOSE_FILENAME} up -d "$@"
 
 popd
