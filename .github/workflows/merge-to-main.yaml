@@ -1,9 +1,9 @@
-name: Publishing new version on pushes to master.
+name: Publishing new version on pushes to main.
 
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   validate:
     name: Publish module
@@ -20,7 +20,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       - name: Bump version and push tag
         uses: mathieudutour/github-tag-action@v4
